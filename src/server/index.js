@@ -1,15 +1,22 @@
-var path = require('path')
+//dependecias
+const dotenv = require('dotenv');
+const fetch = require('node-fetch');  
+dotenv.config();
+
 const express = require('express')
 const mockAPIResponse = require('./mockAPI.js')
+const bodyParser = require("body-parser");
 
 const app = express()
+
+app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.json());
 
 app.use(express.static('dist'))
 
 console.log(__dirname)
 
 app.get('/', function (req, res) {
-    res.sendFile('dist/index.html')
 })
 
 // designates what port the app will listen to for incoming requests
