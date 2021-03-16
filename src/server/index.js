@@ -1,29 +1,40 @@
 //dependecias
+
+const createExpressApp = () => {
+    const express = require('express')
+    const cors = require("cors");
+    const fetch = require('node-fetch');  
+
+    const app = express()
+
+    app.use(express.urlencoded({ extended: false }));
+    app.use(express.json());
+
+    app.use(express.static('dist'))
+    app.use(cors());
+
+    console.log(__dirname)
+    return app;
+}
+
+const app = createExpressApp();
+
 const dotenv = require('dotenv');
-const fetch = require('node-fetch');  
 dotenv.config();
+const baseUrl = `https://api.meaningcloud.com/sentiment-2.1?key=${process.env.API_KEY}`;
 
-const express = require('express')
-const mockAPIResponse = require('./mockAPI.js')
-const bodyParser = require("body-parser");
-
-const app = express()
-
-app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(bodyParser.json());
-
-app.use(express.static('dist'))
-
-console.log(__dirname)
+//end point é um metodo do servidor tipo rota 
 
 app.get('/', function (req, res) {
+    res.sendFile('dist/index.html');
 })
 
 // designates what port the app will listen to for incoming requests
-app.listen(8081, function () {
-    console.log('Example app listening on port 8081!')
+app.listen(8080, function () {
+    console.log('Example app listening on port 8080!')
 })
 
-app.get('/test', function (req, res) {
+app.get('/submit', function (req, res) {
+    const mockAPIResponse = require('./mockAPI.js')
     res.send(mockAPIResponse)
 })
