@@ -1,18 +1,32 @@
 function handleSubmit(event) {
-    event.preventDefault()
+  event.preventDefault();
 
-    // check what text was put into the form field
-    let formText = document.getElementById('name').value
-    
-    Client.checkForName(formText)
+  // check what text was put into the form field
+  let urlField = document.getElementById("input").value;
 
-    console.log("::: Form Submitted :::")
-    fetch('http://localhost:8080/submit')
-    .then(res => res.json())
-    .then(function(res) {
-        console.log(res)
-        document.getElementById('results').innerHTML = res.message
-    })
+  Client.checkForName(urlField);
+
+  //Fetch request
+  const request = {
+    method: "POST",
+    credentials: "same-origin",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ urlField }), // body data type must match "Content-Type" header
+  }
+  
+  fetch("http://localhost:8080/submit", request)
+    .then((result) => result.json())
+    .then((json) => {
+      updateUI(json);
+      console.log(json);
+    });
 }
 
-export { handleSubmit }
+function updateUI(res) {
+  console.log(res);
+}
+
+export { handleSubmit };
