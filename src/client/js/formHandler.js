@@ -2,7 +2,7 @@ function handleSubmit(event) {
   event.preventDefault();
 
   // check what text was put into the form field
-  let urlField = document.getElementById("input").value;
+  let urlField = document.getElementById("name").value;
 
   Client.checkForName(urlField);
 
@@ -17,7 +17,7 @@ function handleSubmit(event) {
     body: JSON.stringify({ urlField }), // body data type must match "Content-Type" header
   }
   
-  fetch("http://localhost:8080/submit", request)
+  fetch("http://localhost:8081/submit", request)
     .then((result) => result.json())
     .then((json) => {
       updateUI(json);

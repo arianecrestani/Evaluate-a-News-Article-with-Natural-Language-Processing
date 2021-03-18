@@ -1,10 +1,20 @@
 //dependecias
 
+const { urlencoded } = require('express')
+const fetch = require('node-fetch');  
+
+const getMeaningCloud = async (url) => {
+    const baseUrl = `https://api.meaningcloud.com/sentiment-2.1`;
+    return await fetch(`${baseUrl}?key=${process.env.API_KEY}&lang=en&txt=${url})`, {
+        method: 'POST'
+    })
+    .then((response) => response.json())
+    .catch((error) => console.log(error)); // continuacao de criando uma URL
+};
+
 const createExpressApp = () => {
     const express = require('express')
     const cors = require("cors");
-    const fetch = require('node-fetch');  
-
     const app = express()
 
     app.use(express.urlencoded({ extended: false }));
@@ -20,7 +30,6 @@ const createExpressApp = () => {
 const app = createExpressApp();
 
 const dotenv = require('dotenv');
-const { urlencoded } = require('express');
 dotenv.config();
 
 //end point é um metodo do servidor tipo rota 
@@ -28,20 +37,6 @@ dotenv.config();
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html');
 })
-
-// designates what port the app will listen to for incoming requests
-app.listen(8080, function () {
-    console.log('Example app listening on port 8080!')
-})
-
-const getMeaningCloud = async (text) => {
-    const baseUrl = `https://api.meaningcloud.com/sentiment-2.1`;
-    return await fetch(`${baseUrl}?url=${url}&key=${process.env.API_KEY})`, {
-        method: 'POST'
-    })
-    .then((response) => response.json())
-    .catch((error) => console.log(error)); // continuacao de criando uma URL
-};
    
 const formatedData = (data) => {
     var score_text = data.score_tag;
@@ -56,11 +51,19 @@ const formatedData = (data) => {
     return result
 }
 
-app.get('/submit', function (req, res) {
+app.post('/submit', function (req, res) {
     // fazer um request para o meaningcloud e mandar a informacao formatada no res.send
     console.log(req.body);
     getMeaningCloud(req.body)
-    .then(data => res.send(data));
+    .then(data => {
+        console.log(data)
+        return res.send(data)
+    });
 //     const mockAPIResponse = require('./mockAPI.js')
 //     res.send(mockAPIResponse)
+})
+
+// designates what port the app will listen to for incoming requests
+app.listen(8081, function () {
+    console.log('Example app listening on port 8081!')
 })
