@@ -40,15 +40,37 @@ app.get('/', function (req, res) {
    
 const formatedData = (data) => {
     var score_text = data.score_tag;
-    // 
+    if (data.score_tag === "P+") {
+        answer = "strong positive";
+      } else if (data.score_tag === "P") {
+        answer = "positive";
+      } else if (data.score_tag === "NEU") {
+        answer ="neutral";
+      } else if (data.score_tag === "N") {
+        answer = "negative";
+      } else if (data.score_tag === "N+") {
+        answer = " strong negative";
+      }else if (data.score_tag === "NONE") {
+        answer = "without sentiment";
 
-    var result = {
+        return answer;
+    }   
+    result = {
         "model": data.model,
         "score_tag":  score_text,
         "confidence": data.confidence
-    }
-
-    return result
+    },
+};
+function updateUI(sentiment) {
+    console.log(sentiment);
+  
+    const model = document.getElementById("model");
+    const score = document.getElementById("score");
+    const confidence = document.getElementById("confidence");
+  
+    model.innerHTML = sentiment.model ? sentiment.model : "";
+    score.innerHTML = sentiment.score ? sentiment.score : "";
+    confidence.innerHTML = sentiment.confidence ? sentiment.confidence : "";
 }
 
 app.post('/submit', function (req, res) {

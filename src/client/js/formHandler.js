@@ -27,6 +27,7 @@ function handleSubmit(event) {
 
 function updateUI(res) {
   console.log(res);
+  
 }
 
 export { handleSubmit };
