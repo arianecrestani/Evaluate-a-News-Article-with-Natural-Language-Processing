@@ -20,14 +20,48 @@ function handleSubmit(event) {
   fetch("http://localhost:8081/submit", request)
     .then((result) => result.json())
     .then((json) => {
-      updateUI(json);
+      updateUI(formatedData(json));
       console.log(json);
     });
 }
 
 function updateUI(res) {
   console.log(res);
+  const model = document.getElementById("model");
+  const score = document.getElementById("score");
+  const confidence = document.getElementById("confidence");
+
+  model.innerHTML = res.model ? res.model : "";
+  score.innerHTML = res.score ? res.score : "";
+  confidence.innerHTML = res.confidence ? res.confidence : "";
   
 }
+
+const formatedData = (data) => {
+  
+  var score_text = data.score_tag;
+
+  if (data.score_tag === "P+") {
+    score_text = "strong positive";
+  } else if (data.score_tag === "P") {
+    score_text = "positive";
+  } else if (data.score_tag === "NEU") {
+    score_text ="neutral";
+  } else if (data.score_tag === "N") {
+    score_text = "negative";
+  } else if (data.score_tag === "N+") {
+    score_text = " strong negative";
+  } else if (data.score_tag === "NONE") {
+    score_text = "without sentiment";
+  }   
+
+  var result = {
+    "model": data.model,  
+    "score":  score_text,
+    "confidence": data.confidence
+  }
+  
+  return result;
+};
 
 export { handleSubmit };
