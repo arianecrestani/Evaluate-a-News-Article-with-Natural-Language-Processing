@@ -34,19 +34,22 @@ function updateUI(res) {
   model.innerHTML = res.model ? res.model : "";
   score.innerHTML = res.score ? res.score : "";
   confidence.innerHTML = res.confidence ? res.confidence : "";
+
+
+  urlField.value = "";
   
 }
 
 const formatedData = (data) => {
   
-  var score_text = data.score_tag;
+  let score_text = data.score_tag;
 
   if (data.score_tag === "P+") {
     score_text = "strong positive";
   } else if (data.score_tag === "P") {
     score_text = "positive";
   } else if (data.score_tag === "NEU") {
-    score_text ="neutral";
+    score_text = "neutral";
   } else if (data.score_tag === "N") {
     score_text = "negative";
   } else if (data.score_tag === "N+") {
@@ -55,7 +58,7 @@ const formatedData = (data) => {
     score_text = "without sentiment";
   }   
 
-  var result = {
+  const result = {
     "model": data.model,  
     "score":  score_text,
     "confidence": data.confidence

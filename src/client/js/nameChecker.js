@@ -1,16 +1,19 @@
-function checkForName(inputText) {
-    console.log("::: Running checkForName :::", inputText);
-    let names = [
-        "Picard",
-        "Janeway",
-        "Kirk",
-        "Archer",
-        "Georgiou"
+const checkword = (inputText) => {
+
+    const negativWord = [
+        "fuck",
+        "asshole",
+        "idiot",
+        "motherfucker",
+        "ass"
     ]
 
-    if(names.includes(inputText)) {
-        alert("Welcome, Captain!")
+    if (inputText === negativWord) {
+    
+        alert ("error")
+
     }
+
 }
 
-export { checkForName }
+export {checkforName}
