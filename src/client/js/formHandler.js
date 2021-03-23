@@ -32,8 +32,8 @@ function updateUI(res) {
   const confidence = document.getElementById("confidence");
 
   model.innerHTML = res.model ? res.model : "";
-  score.innerHTML = res.score ? res.score : "";
-  confidence.innerHTML = res.confidence ? res.confidence : "";
+  score.innerHTML = `Polarity score: ${res.score}`;
+  confidence.innerHTML = `Confidence: ${res.confidence}`+ '%';
 
 
   urlField.value = "";

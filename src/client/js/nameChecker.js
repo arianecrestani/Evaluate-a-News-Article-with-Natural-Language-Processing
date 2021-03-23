@@ -1,4 +1,4 @@
-const checkword = (inputText) => {
+const checkForName = (inputText) => {
 
     const negativWord = [
         "fuck",
@@ -8,12 +8,10 @@ const checkword = (inputText) => {
         "ass"
     ]
 
-    if (inputText === negativWord) {
-    
-        alert ("error")
-
+    if(negativWord.includes(inputText)) {
+        alert("error")
     }
 
 }
 
-export {checkforName}
+export {checkForName}
