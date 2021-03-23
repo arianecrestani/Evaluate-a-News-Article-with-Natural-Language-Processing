@@ -2,9 +2,9 @@ function handleSubmit(event) {
   event.preventDefault();
 
   // check what text was put into the form field
-  let urlField = document.getElementById("name").value;
+  let textField = document.getElementById("name").value;
 
-  Client.checkForName(urlField);
+  Client.checkForName(textField);
 
   //Fetch request
   const request = {
@@ -14,7 +14,7 @@ function handleSubmit(event) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ urlField }), // body data type must match "Content-Type" header
+    body: JSON.stringify({ textField }), // body data type must match "Content-Type" header
   }
   
   fetch("http://localhost:8081/submit", request)
@@ -35,8 +35,7 @@ function updateUI(res) {
   score.innerHTML = `Polarity score: ${res.score}`;
   confidence.innerHTML = `Confidence: ${res.confidence}`+ '%';
 
-
-  urlField.value = "";
+  textField.value = "";
   
 }
 

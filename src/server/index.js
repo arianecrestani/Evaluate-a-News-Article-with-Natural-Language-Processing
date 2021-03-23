@@ -4,8 +4,9 @@ const { urlencoded } = require('express')
 const fetch = require('node-fetch');  
 
 const getMeaningCloud = async (url) => {
+    console.log(url);
     const baseUrl = `https://api.meaningcloud.com/sentiment-2.1`;
-    return await fetch(`${baseUrl}?key=${process.env.API_KEY}&lang=en&txt=${url})`, {
+    return await fetch(`${baseUrl}?key=${process.env.API_KEY}&of=json&lang=en&txt=${url})`, {
         method: 'POST'
     })
     .then((response) => response.json())
@@ -40,8 +41,7 @@ app.get('/', function (req, res) {
 
 app.post('/submit', function (req, res) {
     // fazer um request para o meaningcloud e mandar a informacao formatada no res.send
-    console.log(req.body);
-    getMeaningCloud(req.body)
+    getMeaningCloud(req.body.textField)
     .then(data => {
         console.log(data)
         return res.send(data)
