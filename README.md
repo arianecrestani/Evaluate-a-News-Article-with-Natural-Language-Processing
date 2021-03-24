@@ -13,10 +13,7 @@ Fixing Javascript event errors
 Building a better production config for Webpack
 Adding Service Workers to our app using Webpack
 Get Up and Running
-Fork this repo, then clone the branch of your choice from your forked repo down to your computer:
 
-git clone -- git@github.com:[your-user-name]/webpack-express.git --
-cd into your new folder and run:
 
 npm install
 npm run build-dev to start the webpack dev server
