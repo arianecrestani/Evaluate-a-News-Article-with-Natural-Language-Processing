@@ -1,4 +1,4 @@
-import { containsProfanity as containsProfanity } from "../src/client/js/containsProfanity";
+import { containsProfanity as containsProfanity} from "../src/client/js/containsProfanity";
 
 describe("Testing of negativWord", () => {
   test("if has some negativWord will be true", () => {
@@ -8,5 +8,6 @@ describe("Testing of negativWord", () => {
     expect(containsProfanity("ass")).toBe(true);
     expect(containsProfanity("give me your ass")).toBe(true);
     expect(containsProfanity("A")).toBe(false);
+    
   });
 });
