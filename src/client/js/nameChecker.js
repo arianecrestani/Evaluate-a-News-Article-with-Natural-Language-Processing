@@ -8,10 +8,10 @@ const checkForName = (inputText) => {
         "ass"
     ]
 
-    if(negativWord.includes(inputText)) {
-        alert("error")
+    if(negativWord.includes(inputText)) {  
+        return true;
     }
-
+    return false;
 }
 
 export {checkForName}

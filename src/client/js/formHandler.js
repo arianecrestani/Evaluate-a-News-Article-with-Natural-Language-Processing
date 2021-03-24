@@ -1,10 +1,16 @@
+import { checkForName } from "./nameChecker";
+
 function handleSubmit(event) {
   event.preventDefault();
 
   // check what text was put into the form field
   let textField = document.getElementById("name").value;
 
-  Client.checkForName(textField);
+
+  if (Client.checkForName(textField)) {
+    alert("error")
+    return;
+  }
 
   //Fetch request
   const request = {
@@ -67,3 +73,10 @@ const formatedData = (data) => {
 };
 
 export { handleSubmit };
+
+
+if (false) {
+  console.log("a");
+} else {
+  console.log("b");
+}
