@@ -7,13 +7,15 @@ const containsProfanity = (inputText) => {
         "motherfucker",
         "ass"
     ]
-    
 
-    if(profanityWord.includes(inputText)) {  
-        return true;
-    }
-    return false;
+    let contains = false;
+    inputText.split(" ").forEach(element => {
+        if(profanityWord.includes(element)) {  
+            contains = true;
+        }    
+    });   
 
+    return contains;
 }
     
 export {containsProfanity}

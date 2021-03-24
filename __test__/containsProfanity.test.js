@@ -7,5 +7,6 @@ describe("Testing of negativWord", () => {
     expect(containsProfanity("fuck")).toBe(true);
     expect(containsProfanity("ass")).toBe(true);
     expect(containsProfanity("give me your ass")).toBe(true);
+    expect(containsProfanity("A")).toBe(false);
   });
 });
