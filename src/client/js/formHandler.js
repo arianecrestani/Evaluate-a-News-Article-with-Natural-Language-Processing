@@ -1,4 +1,4 @@
-import { checkForName } from "./nameChecker";
+import { containsProfanity } from "./containsProfanity";
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -7,7 +7,7 @@ function handleSubmit(event) {
   let textField = document.getElementById("name").value;
 
 
-  if (Client.checkForName(textField)) {
+  if (Client.containsProfanity(textField)) {
     alert("error")
     return;
   }
