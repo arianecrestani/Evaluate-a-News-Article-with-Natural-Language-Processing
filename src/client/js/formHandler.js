@@ -41,7 +41,6 @@ function updateUI(res) {
   score.innerHTML = `Polarity score: ${res.score}`;
   confidence.innerHTML = `Confidence: ${res.confidence}`+ '%';
 
-  textField.value = "";
   
 }
 
@@ -74,9 +73,3 @@ const formatedData = (data) => {
 
 export { handleSubmit };
 
-
-if (false) {
-  console.log("a");
-} else {
-  console.log("b");
-}
