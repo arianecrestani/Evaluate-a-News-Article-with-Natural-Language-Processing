@@ -8,7 +8,7 @@ function handleSubmit(event) {
 
 
   if (Client.containsProfanity(textField)) {
-    alert("error")
+    alert("This content has profanaty")
     return;
   }
 
