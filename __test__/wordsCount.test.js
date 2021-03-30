@@ -13,7 +13,5 @@ describe("Testing of wordsCount", () => {
     expect(wordsCount("   ")).toBe(0);
     expect(wordsCount("...")).toBe(1);
     expect(wordsCount("a  a")).toBe(2);
-
-
   });
 });
