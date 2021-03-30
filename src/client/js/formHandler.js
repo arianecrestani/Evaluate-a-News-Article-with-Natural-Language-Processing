@@ -1,4 +1,4 @@
-import { containsProfanity } from "./containsProfanity";
+import { wordsCount } from "./wordsCount";
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -7,8 +7,8 @@ function handleSubmit(event) {
   let textField = document.getElementById("name").value;
 
 
-  if (Client.containsProfanity(textField)) {
-    alert("This content has profanaty")
+  if (Client.wordsCount(textField) < 5) {
+    alert("need to be more than 5 words")
     return;
   }
 

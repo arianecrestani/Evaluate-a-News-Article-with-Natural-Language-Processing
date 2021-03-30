@@ -1,4 +1,4 @@
-import { containsProfanity } from "./js/containsProfanity";
+import { wordsCount } from "./js/wordsCount";
 import { handleSubmit } from "./js/formHandler";
 
 import "./styles/resets.scss";
@@ -7,4 +7,4 @@ import "./styles/footer.scss";
 import "./styles/form.scss";
 import "./styles/header.scss";
 
-export { containsProfanity, handleSubmit };
+export { wordsCount, handleSubmit };
