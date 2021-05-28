@@ -32,4 +32,4 @@ Adding Service Workers to our app using Webpack
 
 ### Preview
 
-![flwochart](./src/client/image/preview.jpg).
+![flwochart](./src/client/image/preview.jpg)
