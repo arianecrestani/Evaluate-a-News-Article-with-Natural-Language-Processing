@@ -19,7 +19,7 @@ function handleSubmit(event) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ value: textField.value }), // body data type must match "Content-Type" header
+    body: JSON.stringify({ textField: textField.value }), // body data type must match "Content-Type" header
   };
 
   fetch("http://localhost:8081/submit", request)
@@ -29,7 +29,6 @@ function handleSubmit(event) {
       console.log(json);
     });
 }
-
 
 // //enter press event
 const enterPress = (e) => {
