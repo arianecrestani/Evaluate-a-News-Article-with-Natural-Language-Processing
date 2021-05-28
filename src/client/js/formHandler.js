@@ -4,11 +4,11 @@ function handleSubmit(event) {
   event.preventDefault();
 
   // check what text was put into the form field
-  let textField = document.getElementById("name").value;
+  let textField = document.getElementById("name").value ;
 
 
-  if (Client.wordsCount(textField) < 5) {
-    alert("need to be more than 5 words")
+  if (Client.wordsCount(textField) < 3) {
+    alert("need to be more than 3 words")
     return;
   }
 
@@ -29,19 +29,21 @@ function handleSubmit(event) {
       updateUI(formatedData(json));
       console.log(json);
     });
+
+
 }
 
 function updateUI(res) {
   console.log(res);
-  const model = document.getElementById("model");
+  const irony = document.getElementById("irony");
   const score = document.getElementById("score");
   const confidence = document.getElementById("confidence");
 
-  model.innerHTML = res.model ? res.model : "";
+  irony.innerHTML = res.irony ? res.irony : "";
   score.innerHTML = `Polarity score: ${res.score}`;
   confidence.innerHTML = `Confidence: ${res.confidence}`+ '%';
 
-  
+
 }
 
 const formatedData = (data) => {
@@ -63,12 +65,16 @@ const formatedData = (data) => {
   }   
 
   const result = {
-    "model": data.model,  
+    "irony": data.irony,  
     "score":  score_text,
     "confidence": data.confidence
+
+  
   }
   
   return result;
+
+
 };
 
 export { handleSubmit };
