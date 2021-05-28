@@ -24,6 +24,8 @@ Adding Service Workers to our app using Webpack
 
 ### Get Up and Running
 
+To run the project node.js must be installed all depedencies then run the following commands:
+
 - `npm install`
 - `npm run build-dev`
 - `npm run start` to server
