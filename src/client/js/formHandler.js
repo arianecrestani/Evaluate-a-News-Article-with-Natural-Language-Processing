@@ -1,12 +1,12 @@
 import { wordsCount } from "./wordsCount";
 
+// check what text was put into the form field
+const textField = document.getElementById("name");
+
 function handleSubmit(event) {
   event.preventDefault();
   
-  // check what text was put into the form field
-  let textField = document.getElementById("name").value;
-
-  if (Client.wordsCount(textField) < 3) {
+  if (Client.wordsCount(textField.value) < 3) {
     alert("need to be more than 3 words");
     return;
   }
@@ -19,7 +19,7 @@ function handleSubmit(event) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ textField }), // body data type must match "Content-Type" header
+    body: JSON.stringify({ value: textField.value }), // body data type must match "Content-Type" header
   };
 
   fetch("http://localhost:8081/submit", request)
@@ -28,49 +28,51 @@ function handleSubmit(event) {
       updateUI(formatedData(json));
       console.log(json);
     });
-  
-  // cleaning input
-  document.getElementById("name").value = "";
-  //enter press event
-  const enterPress = (e) => {
-    if (e.key === "Enter") {
-  
-      textField.addEventListener("keypress", handleSubmit);
-    }
-    enterPress()
-  };
-
 }
 
+
+// //enter press event
+const enterPress = (e) => {
+  if (e.key === "Enter") {
+    handleSubmit()
+  }
+};
+
+textField.addEventListener("keypress", enterPress);
+
 function updateUI(res) {
+
+  // cleaning input
+  textField.value = "";
+
   const score = document.getElementById("score");
   const confidence = document.getElementById("confidence");
 
   score.innerHTML = `Polarity score: ${res.score}`;
   confidence.innerHTML = `Confidence: ${res.confidence}` + "%";
-
 }
 
 const formatedData = (data) => {
   let score_text = data.score_tag;
 
   if (data.score_tag === "P+") {
-    score_text = "strong positive";
+    score_text = "strong positive 😍";
   } else if (data.score_tag === "P") {
-    score_text = "positive";
+    score_text = "positive 😁";
   } else if (data.score_tag === "NEU") {
-    score_text = "neutral";
+    score_text = "neutral 😶";
   } else if (data.score_tag === "N") {
-    score_text = "negative";
+    score_text = "negative 🙁";
   } else if (data.score_tag === "N+") {
-    score_text = " strong negative";
+    score_text = " strong negative 😡";
   } else if (data.score_tag === "NONE") {
-    score_text = "without sentiment";
+    score_text = "without sentiment 🤔";
   }
 
   const result = {
     score: score_text,
     confidence: data.confidence,
+
   };
 
   return result;
